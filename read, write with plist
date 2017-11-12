@@ -1,0 +1,27 @@
+   //write
+        let path = Bundle.main.path(forResource: "myplist", ofType: "plist")
+        print(path!)
+        
+        let url = URL(fileURLWithPath: path!)
+        print(url.absoluteString)
+
+        let str = writeTextField.text
+        let dict = NSMutableDictionary()
+        dict.setValue(str, forKey: "newKey")
+        
+        dict.write(to: url, atomically: true)
+       
+       
+   //read
+        
+               let path = Bundle.main.path(forResource: "myplist", ofType: "plist")
+        print(path!)
+        
+        let url = URL(fileURLWithPath: path!)
+        print(url)
+        
+        let obj = NSDictionary(contentsOf: url)
+        
+        if let str = obj!.value(forKey: "newKey") {
+            self.plistLabel.text = str as? String ?? ""
+        }
